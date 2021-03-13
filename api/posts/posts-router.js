@@ -36,6 +36,7 @@ postRouter.get("/:id", (req, res) => {
         .json({ message: "The post information could not be retrieved" });
     });
 });
+
 module.exports = postRouter;
 
 // implement your posts router here
