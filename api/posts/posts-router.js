@@ -1,3 +1,24 @@
+const express = require("express");
+const postRouter = express.Router();
+
+const post = require("./posts-model.js");
+
+postRouter.get("/", (req, res) => {
+  post
+    .find(req.body)
+    .then((post) => {
+      res.status(200).json(post);
+    })
+    .catch((error) => {
+      console.log(error);
+      res
+        .status(500)
+        .json({ message: "The post with the specified ID does not exist" });
+    }); // THis? It may need to be query but do some digging
+});
+
+module.exports = postRouter;
+
 // implement your posts router here
 
 //[GET] R of CRUD - Read Records / Returns all the array of the post objects contained in the database--/api/posts -- If there is an error in retreving from database respond with 500 --{ message: "The posts information could not be retrieved" }`
